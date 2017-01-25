@@ -3,6 +3,8 @@ node_js:
   - "6"
   - "stable"
   - "node"
-before_install:
-  - nvm install 6
-  - nvm use 6
+ install:
+   - . $HOME/.nvm/nvm.sh
+   - nvm install stable
+   - nvm use stable
+   - npm install
