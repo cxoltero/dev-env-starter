@@ -24,3 +24,12 @@ app.listen(port, (err) => {
     open('http://localhost:' + port);
   }
 });
+
+app.get('/users', (req, res) => {
+  //  sample response
+  res.json([
+    {"id": 1, "firstName": "Bob", "lastName": "Smith", "email": "bob@email.com"},
+    {"id": 2, "firstName": "Samuel", "lastName": "James", "email": "samuel@email.com"},
+    {"id": 3, "firstName": "Hanna", "lastName": "Brown", "email": "hbrown@email.com"}
+  ]);
+});
