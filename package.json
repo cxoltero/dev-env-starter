@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "This README would normally document whatever steps are necessary to get your application up and running.",
   "main": "index.js",
+  "engines" : {
+    "node" : ">=0.12"
+  },
+  "engineStrict" : true,
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
