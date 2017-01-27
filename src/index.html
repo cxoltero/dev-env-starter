@@ -6,6 +6,13 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Boilerplate</title>
+
+  <% if(htmlWebpackPlugin.options.tokenTrackJS) { %>
+  <!-- BEGIN TRACKJS -->
+  <script type="text/javascript">window._trackJs = { token: '<%= htmlWebpackPlugin.options.tokenTrackJS %>' };</script>
+  <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+  <!-- END TRACKJS -->
+  <% } %>
   <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 </head>
 <body>
@@ -24,6 +31,5 @@
       </tbody>
     </table>
   </div>
-<script src="bundle.js"></script>
 </body>
 </html>

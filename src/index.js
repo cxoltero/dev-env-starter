@@ -1,13 +1,21 @@
 import './index.css';
-import {getUsers} from './api/userApi';
+import {getUsers, deleteUser} from './api/userApi';
 
 getUsers()
   .then(res => {
-    const users = res;
-    let userTableBody = '';
+    if (res && Array.isArray(res)) {
+      const users = res;
+      const deleteLinks = global.document.getElementsByClassName('deleteUser');
+      global.document.getElementById('users').innerHTML = populateTable(users);
+      addDelMethodToItem(deleteLinks);
+    }
+  });
 
-    users.map(user => {
-      userTableBody += `
+function populateTable(users){
+  let tableBody = '';
+
+  users.map(user => {
+    tableBody += `
         <tr>
           <td><a href="#" data-id="${user.id}" class="deleteUser">Delete</a></td>
           <td>${user.id}</td>
@@ -16,7 +24,19 @@ getUsers()
           <td>${user.email}</td>
         </tr>
       `
-    });
-    const table = global.document.getElementById('users');
-    table.innerHTML = userTableBody;
   });
+
+  return tableBody;
+}
+
+function addDelMethodToItem(itemsArray) {
+  Array.from(itemsArray, link => {
+    link.onclick = function(e) {
+      e.preventDefault();
+      const element = e.target;
+      deleteUser(element.attributes["data-id"].value);
+      const row = element.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  });
+}

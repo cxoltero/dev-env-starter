@@ -1,4 +1,5 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
   debug: true,
@@ -13,10 +14,18 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject: true
+    })
+  ],
   module: {
+    query: {
+      presets: ['es2015'],
+    },
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader']},
       {test: /\.css$/, loaders: ['style', 'css']}
     ]
   }
